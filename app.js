@@ -147,7 +147,8 @@
     }
     form.months.innerHTML = Array.from({ length: policy.maxMonths }, (_, i) => `<option value="${i + 1}">${i + 1} month${i ? 's' : ''}</option>`).join('');
     if (policy.cancellationFeePercent !== undefined) {
-      $('cancel-policy').textContent = `You can cancel from your booking page after paying, before your check-in date. A ${policy.cancellationFeePercent}% cancellation fee applies; the rest is refunded once your payment has cleared at our bank.`;
+      const cutoff = policy.cancelRequestCutoffHours ?? 48;
+      $('cancel-policy').textContent = `After paying, you can request a cancellation from your booking page up to ${cutoff} hours before check-in${policy.checkInTime ? ` (check-in is from ${policy.checkInTime})` : ''}. If we approve it, ${policy.cancellationFeePercent}% of what you've paid is kept as a cancellation fee and the rest is refunded once your payment has cleared at our bank.`;
     }
     if (policy.holdMinutesCard && policy.holdHoursEft) {
       $('hold-text').textContent = `${policy.holdMinutesCard} minutes for card, ${policy.holdHoursEft} hours for EFT`;
