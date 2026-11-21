@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Stay · Book a room</title>
+  <meta name="description" content="Book a room at The Stay, 501 Rachel de Beer. Short stays per night and monthly student rentals.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="./">The Stay</a>
+      <span class="addr">501 Rachel de Beer</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <h1>Book your room</h1>
+      <p>Stay a few nights, or rent monthly as a student. Pick your room and dates, then pay securely to confirm.</p>
+    </section>
+
+    <form id="booking" class="card" method="post" novalidate>
+      <fieldset class="mode" aria-label="Type of stay">
+        <label><input type="radio" name="mode" value="monthly" checked> <span>Monthly (students)</span></label>
+        <label><input type="radio" name="mode" value="nightly"> <span>Short stay (per night)</span></label>
+      </fieldset>
+
+      <h2>1. Choose a room</h2>
+      <div id="rooms" class="rooms" role="radiogroup" aria-label="Room">
+        <p class="muted" id="rooms-status">Loading rooms…</p>
+      </div>
+
+      <h2>2. Dates</h2>
+      <div class="grid">
+        <label>Move-in / check-in
+          <input type="date" name="check_in" id="check_in" required>
+        </label>
+        <label data-for="nightly" hidden>Check-out
+          <input type="date" name="check_out" id="check_out">
+        </label>
+        <label data-for="monthly">How many months
+          <select name="months" id="months"></select>
+        </label>
+        <label>Guests
+          <select name="guests" id="guests"><option>1</option></select>
+        </label>
+      </div>
+
+      <h2>3. Your details</h2>
+      <div class="grid">
+        <label>Full name
+          <input name="name" id="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" id="email" autocomplete="email" required>
+        </label>
+        <label>Mobile number
+          <input type="tel" name="phone" id="phone" autocomplete="tel" placeholder="+27 82 000 0000">
+        </label>
+      </div>
+
+      <div class="quote" id="quote" aria-live="polite" hidden>
+        <div class="row"><span id="quote-label"></span><strong id="quote-total"></strong></div>
+        <p class="muted" id="quote-detail"></p>
+      </div>
+      <div class="error" id="error" role="alert" hidden></div>
+
+      <button type="submit" id="submit">Continue to payment</button>
+      <p class="muted small">We hold your room while you pay: <span id="hold-text">a short while for card, longer for EFT</span>. Nothing is charged until you choose how to pay on the next page.</p>
+    </form>
+
+    <section class="card policy">
+      <h2>Good to know</h2>
+      <ul>
+        <li>Your booking is confirmed automatically as soon as your payment reflects.</li>
+        <li>Paying by EFT? Use the reference on the payment page so we can match your payment.</li>
+        <li id="cancel-policy">You can cancel from your booking page after paying, before your check-in date. A cancellation fee applies; the rest is refunded once your payment has cleared at our bank.</li>
+      </ul>
+    </section>
+
+    <noscript><p class="card">Please enable JavaScript to book online.</p></noscript>
+  </main>
+
+  <footer class="site">
+    <div class="wrap muted small">The Stay · 501 Rachel de Beer</div>
+  </footer>
+</body>
+</html>
